@@ -21,7 +21,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findById(int id) {
+    public User findById(String id) {
         Optional<User> optionalUser = userRepository.findById(id);
 
         if (optionalUser.isPresent()) {
@@ -31,7 +31,7 @@ public class UserService {
         return null;
     }
 
-    public void delete(int id) {
+    public void deleteUser(String id) {
         userRepository.deleteById(id);
     }
 }
