@@ -13,7 +13,7 @@ import java.util.Optional;
 public class TransactionService {
     private final TransactionRepository transactionRepository;
 
-    public List<Transaction> getAllTransactions() {
+    public List<Transaction> getAll() {
         return transactionRepository.findAll();
     }
 
@@ -31,7 +31,7 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public void deleteTransactionById(int id) {
+    public void deleteById(int id) {
         transactionRepository.deleteById(id);
     }
 }

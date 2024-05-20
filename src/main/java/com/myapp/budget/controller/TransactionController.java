@@ -17,7 +17,7 @@ public class TransactionController {
 
     @GetMapping("/all")
     public ResponseEntity<List<Transaction>> getAllTransactions() {
-        return new ResponseEntity<>(transactionService.getAllTransactions(), HttpStatus.OK);
+        return new ResponseEntity<>(transactionService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -48,7 +48,7 @@ public class TransactionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Transaction> deleteTransaction(@PathVariable int id) {
-        transactionService.deleteTransactionById(id);
+        transactionService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
