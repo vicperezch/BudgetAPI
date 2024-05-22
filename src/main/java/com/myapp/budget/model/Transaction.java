@@ -17,6 +17,7 @@ public class Transaction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date date;
+    @Enumerated(EnumType.STRING)
     private Type type;
     private double amount;
     private String description;
