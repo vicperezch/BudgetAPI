@@ -17,4 +17,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> RoleNotFoundExceptionHandler(RoleNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(value = TypeNotFoundException.class)
+    public ResponseEntity<String> TypeNotFoundExceptionHandler(TypeNotFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+    }
 }

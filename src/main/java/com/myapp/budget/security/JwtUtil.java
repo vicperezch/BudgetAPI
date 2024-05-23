@@ -31,7 +31,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
-                .expiration(new Date((new Date()).getTime() + 5000))
+                .expiration(new Date((new Date()).getTime() + 600000))
                 .claim("role", role)
                 .signWith(getSigningKey())
                 .compact();

@@ -1,5 +1,7 @@
 package com.myapp.budget.controller;
 
+import com.myapp.budget.dto.TransactionDto;
+import com.myapp.budget.exceptions.TypeNotFoundException;
 import com.myapp.budget.model.Transaction;
 import com.myapp.budget.service.TransactionService;
 import lombok.AllArgsConstructor;
@@ -26,12 +28,12 @@ public class TransactionController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
-        return new ResponseEntity<>(transactionService.save(transaction), HttpStatus.CREATED);
+    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionDto transactionDto) throws TypeNotFoundException {
+        return new ResponseEntity<>(transactionService.save(transactionDto), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Transaction> updateTransaction(@PathVariable int id, @RequestBody Transaction newTransaction) {
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable int id, @RequestBody TransactionDto newTransaction) {
         Transaction transaction = transactionService.findById(id);
 
         if (transaction == null) {
@@ -41,7 +43,6 @@ public class TransactionController {
         transaction.setAmount(newTransaction.getAmount());
         transaction.setDescription(newTransaction.getDescription());
         transaction.setDate(newTransaction.getDate());
-        transaction.setType(newTransaction.getType());
 
         return new ResponseEntity<>(transactionService.save(transaction), HttpStatus.OK);
     }

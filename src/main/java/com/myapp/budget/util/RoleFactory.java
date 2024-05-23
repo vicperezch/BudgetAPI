@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleFactory {
     public static Role getInstance(String role) throws RoleNotFoundException {
-        switch (role) {
+        switch (role.toLowerCase()) {
             case "admin" -> {
                 return Role.ADMIN;
             }

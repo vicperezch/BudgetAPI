@@ -3,6 +3,7 @@ package com.myapp.budget.security;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -40,6 +41,10 @@ public class SecurityConfiguration {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/v1/api/auth/**").permitAll()
+                        .requestMatchers("/v1/api/users/**").hasRole("ADMIN")
+                        .requestMatchers("/v1/api/transactions/all").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/v1/api/transactions/{id}").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/v1/api/transactions/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
