@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document("users")
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

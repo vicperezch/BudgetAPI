@@ -18,7 +18,7 @@ public class JwtUtil {
     @Value("${KEY}")
     private String encryptionKey;
 
-    public String extractUsername(String token) {
+    public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
@@ -32,7 +32,7 @@ public class JwtUtil {
                 .subject(userDetails.getUsername())
                 .issuedAt(new Date())
                 .expiration(new Date((new Date()).getTime() + 5000))
-                .claim("roles", role)
+                .claim("role", role)
                 .signWith(getSigningKey())
                 .compact();
     }
@@ -43,8 +43,8 @@ public class JwtUtil {
     }
 
     public boolean isTokenValid(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
+        final String email = extractEmail(token);
+        return (email.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
     private SecretKey getSigningKey() {
