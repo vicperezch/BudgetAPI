@@ -4,15 +4,10 @@ import com.myapp.budget.exceptions.TypeNotFoundException;
 
 public class TypeFactory {
     public static Type getInstance(String type) throws TypeNotFoundException {
-        switch (type.toLowerCase()) {
-            case "income" -> {
-                return Type.INCOME;
-            }
-            case "expense" -> {
-                return Type.EXPENSE;
-            }
-
-            default -> throw new TypeNotFoundException("No role found for " +  type);
-        }
+        return switch (type.toLowerCase()) {
+            case "income" -> Type.INCOME;
+            case "expense" -> Type.EXPENSE;
+            default -> throw new TypeNotFoundException("No type found for " +  type);
+        };
     }
 }

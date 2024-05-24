@@ -6,15 +6,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class RoleFactory {
     public static Role getInstance(String role) throws RoleNotFoundException {
-        switch (role.toLowerCase()) {
-            case "admin" -> {
-                return Role.ADMIN;
-            }
-            case "user" -> {
-                return Role.USER;
-            }
+        try {
+            return switch (role.toLowerCase()) {
+                case "admin" -> Role.ADMIN;
+                case "user" -> Role.USER;
+                default -> throw new RoleNotFoundException("No role found for " + role);
+            };
 
-            default -> throw new RoleNotFoundException("No role found for " +  role);
+        } catch (NullPointerException e) {
+            return Role.USER;
         }
     }
 }

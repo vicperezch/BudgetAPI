@@ -11,7 +11,6 @@ import com.myapp.budget.security.JwtUtil;
 import com.myapp.budget.security.UserDetailsImpl;
 import com.myapp.budget.util.RoleFactory;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -69,7 +68,6 @@ public class AuthService {
                     .email(userDetails.getEmail())
                     .id(userDetails.getId())
                     .token(jwt)
-                    .type("Bearer")
                     .role(roles.getFirst())
                     .build();
 

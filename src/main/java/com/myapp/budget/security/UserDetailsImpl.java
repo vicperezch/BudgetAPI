@@ -1,6 +1,5 @@
 package com.myapp.budget.security;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.myapp.budget.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
