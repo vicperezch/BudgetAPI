@@ -36,6 +36,7 @@ public class TransactionService {
         UserDetailsImpl user = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         Transaction transaction = Transaction.builder()
+                .category(transactionDto.getCategory())
                 .date(transactionDto.getDate())
                 .amount(transactionDto.getAmount())
                 .description(transactionDto.getDescription())
@@ -50,7 +51,18 @@ public class TransactionService {
         return transactionRepository.save(transaction);
     }
 
-    public void deleteById(int id) {
-        transactionRepository.deleteById(id);
+    public void deleteById(int id) throws IllegalAccessException {
+        UserDetailsImpl user = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Optional<Transaction> transaction = transactionRepository.findById(id);
+
+        if (transaction.isPresent()) {
+            Transaction transactionToDelete = transaction.get();
+
+            if (transactionToDelete.getUserId().equals(user.getId())) {
+                transactionRepository.delete(transactionToDelete);
+            }
+        }
+
+        throw new IllegalAccessException("Cannot delete this transaction");
     }
 }

@@ -18,6 +18,7 @@ import java.util.Date;
 public class Transaction {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String category;
     private Date date;
     @Enumerated(EnumType.STRING)
     private Type type;

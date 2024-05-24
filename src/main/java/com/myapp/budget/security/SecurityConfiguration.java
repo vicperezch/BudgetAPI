@@ -44,7 +44,6 @@ public class SecurityConfiguration {
                         .requestMatchers("/v1/api/users/**").hasRole("ADMIN")
                         .requestMatchers("/v1/api/transactions/all").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/v1/api/transactions/{id}").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/v1/api/transactions/{id}").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .httpBasic(withDefaults())
                 .sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

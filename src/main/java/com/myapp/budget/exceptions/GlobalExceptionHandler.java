@@ -22,4 +22,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> TypeNotFoundExceptionHandler(TypeNotFoundException exception) {
         return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
     }
+
+    @ExceptionHandler(value = IllegalAccessException.class)
+    public ResponseEntity<String> IllegalAccessExceptionHandler(IllegalAccessException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.CONFLICT);
+    }
 }

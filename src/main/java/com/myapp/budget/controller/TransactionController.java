@@ -40,6 +40,7 @@ public class TransactionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
+        transaction.setCategory(newTransaction.getCategory());
         transaction.setAmount(newTransaction.getAmount());
         transaction.setDescription(newTransaction.getDescription());
         transaction.setDate(newTransaction.getDate());
@@ -48,7 +49,7 @@ public class TransactionController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Transaction> deleteTransaction(@PathVariable int id) {
+    public ResponseEntity<Transaction> deleteTransaction(@PathVariable int id) throws IllegalAccessException {
         transactionService.deleteById(id);
 
         return new ResponseEntity<>(HttpStatus.OK);
