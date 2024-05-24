@@ -1,4 +1,4 @@
-package com.myapp.budget.Service;
+package com.myapp.budget.service;
 
 import com.myapp.budget.dto.RegisterDto;
 import com.myapp.budget.exceptions.RoleNotFoundException;
@@ -7,7 +7,6 @@ import com.myapp.budget.model.User;
 import com.myapp.budget.repository.UserRepository;
 import com.myapp.budget.security.JwtUtil;
 import com.myapp.budget.security.UserDetailsImpl;
-import com.myapp.budget.service.AuthService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

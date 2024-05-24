@@ -3,6 +3,7 @@ package com.myapp.budget.service;
 import com.myapp.budget.dto.LoginDto;
 import com.myapp.budget.dto.LoginResponseDto;
 import com.myapp.budget.dto.RegisterDto;
+import com.myapp.budget.dto.RegisterResponseDto;
 import com.myapp.budget.exceptions.RoleNotFoundException;
 import com.myapp.budget.exceptions.UserAlreadyExistsException;
 import com.myapp.budget.model.User;
@@ -33,7 +34,7 @@ public class AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtil jwtUtil;
 
-    public ResponseEntity<String> signUpUser(RegisterDto registerDto)
+    public ResponseEntity<RegisterResponseDto> signUpUser(RegisterDto registerDto)
             throws UserAlreadyExistsException, RoleNotFoundException {
         if (userRepository.existsByEmail(registerDto.getEmail())) {
             throw new UserAlreadyExistsException("Provided email already exists.");
@@ -44,7 +45,12 @@ public class AuthService {
 
         User user = createUser(registerDto);
         userRepository.save(user);
-        return new ResponseEntity<>(jwtUtil.generateToken(UserDetailsImpl.build(user), user.getRole()), HttpStatus.CREATED);
+
+        RegisterResponseDto registerResponseDto = RegisterResponseDto.builder()
+                .message("Account has been successfully created")
+                .build();
+
+        return new ResponseEntity<>(registerResponseDto, HttpStatus.CREATED);
     }
 
     public ResponseEntity<LoginResponseDto> signInUser(LoginDto loginDto) {

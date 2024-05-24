@@ -1,8 +1,7 @@
-package com.myapp.budget.Service;
+package com.myapp.budget.service;
 
 import com.myapp.budget.model.User;
 import com.myapp.budget.repository.UserRepository;
-import com.myapp.budget.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

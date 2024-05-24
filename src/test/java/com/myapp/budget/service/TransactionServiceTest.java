@@ -1,9 +1,7 @@
-package com.myapp.budget.Service;
+package com.myapp.budget.service;
 
-import com.myapp.budget.dto.TransactionDto;
 import com.myapp.budget.model.Transaction;
 import com.myapp.budget.repository.TransactionRepository;
-import com.myapp.budget.service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

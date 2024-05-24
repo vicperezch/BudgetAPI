@@ -1,10 +1,9 @@
-package com.myapp.budget.Service;
+package com.myapp.budget.service;
 
 import com.myapp.budget.exceptions.TypeNotFoundException;
 import com.myapp.budget.model.Transaction;
 import com.myapp.budget.repository.TransactionRepository;
 import com.myapp.budget.security.UserDetailsImpl;
-import com.myapp.budget.service.SummaryService;
 import com.myapp.budget.util.Type;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -3,6 +3,7 @@ package com.myapp.budget.controller;
 import com.myapp.budget.dto.LoginDto;
 import com.myapp.budget.dto.LoginResponseDto;
 import com.myapp.budget.dto.RegisterDto;
+import com.myapp.budget.dto.RegisterResponseDto;
 import com.myapp.budget.exceptions.RoleNotFoundException;
 import com.myapp.budget.exceptions.UserAlreadyExistsException;
 import com.myapp.budget.service.AuthService;
@@ -20,7 +21,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegisterDto registerDto) throws RoleNotFoundException,
+    public ResponseEntity<RegisterResponseDto> register(@RequestBody RegisterDto registerDto) throws RoleNotFoundException,
             UserAlreadyExistsException {
         return authService.signUpUser(registerDto);
     }
