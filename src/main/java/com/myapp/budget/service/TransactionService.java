@@ -57,9 +57,10 @@ public class TransactionService {
 
         if (transaction.isPresent()) {
             Transaction transactionToDelete = transaction.get();
-
+            System.out.println("as");
             if (transactionToDelete.getUserId().equals(user.getId())) {
                 transactionRepository.delete(transactionToDelete);
+                return;
             }
         }
 
